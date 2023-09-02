@@ -79,7 +79,6 @@ class TicTacToe {
           confirmQuit();
           return true;
         }
-      
 
       try {
         int actualPosition = 0;
@@ -147,7 +146,7 @@ class TicTacToe {
 };
 
 int main() {
-  std::cout << "TicTacToe V1.02 by lzys0\n";
+  std::cout << "TicTacToe V1.05 by lzys0\n";
   while (true) {
     TicTacToe game;
     game.startProgram();
@@ -158,7 +157,7 @@ int main() {
     std::string userInput;
     std::cout << "Do you want to restart? [Y/N]>";
     std::getline(std::cin, userInput);
-    if (!keywordFound(userInput, "y")) {
+    if (userInput != "" && !keywordFound(userInput, "y")) {
       std::cout << "Play again sometimes!";
       break;
     }
