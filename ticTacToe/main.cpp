@@ -143,7 +143,7 @@ class TicTacToe {
 };
 
 int main() {
-  std::cout << "TicTacToe V1.0 by lzys0\n";
+  std::cout << "TicTacToe V1.02 by lzys0\n";
   while (true) {
     TicTacToe game;
     game.startProgram();
