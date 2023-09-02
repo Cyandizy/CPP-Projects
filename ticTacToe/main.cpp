@@ -49,14 +49,13 @@ class TicTacToe {
       std::string userInput;
       std::cout << "Start? [Y/N]>";
       std::getline(std::cin, userInput);
-      if (keywordFound(userInput, "y") || keywordFound(userInput, "yes")) {
+      if (userInput == "" || keywordFound(userInput, "y") || keywordFound(userInput, "yes")) {
         std::cout << "Starting...\n";
         showBoard();
         getPlayerMove();
       }
       else {
-        std::cout << "Quitting the program.\n";
-        quit = true;
+        confirmQuit();
       }
     }
 
@@ -77,15 +76,10 @@ class TicTacToe {
 
     bool isValidInput(std::string& input) {
       if (keywordFound(input, "quit")) {
-        std::cout << "Do you really want to quit? [Y/N]>";
-        std::string userInput;
-        std::getline(std::cin, userInput);
-        if (keywordFound(userInput, "y")) {
-          std::cout << "Program quit.\n";
-          quit = true;
+          confirmQuit();
           return true;
         }
-      }
+      
 
       try {
         int actualPosition = 0;
@@ -93,7 +87,7 @@ class TicTacToe {
         if (boardData[actualPosition] == '-') {
           boardData[actualPosition] = player;
           return true;
-      }
+        }
         else {
           std::cout << "The position is occupied.\n";
           return false;
@@ -135,6 +129,16 @@ class TicTacToe {
       else if (player == 'X') {
         player = 'O';
       }
+    }
+
+    void confirmQuit() {
+      std::cout << "Do you really want to quit? [Y/N]>";
+        std::string userInput;
+        std::getline(std::cin, userInput);
+        if (userInput == "" || keywordFound(userInput, "y")) {
+          std::cout << "Program quit.\n";
+          quit = true;
+        }
     }
 
     bool quitProgram() {
