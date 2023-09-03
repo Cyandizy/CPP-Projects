@@ -76,8 +76,15 @@ class ToDoList {
 
         void loadTasks() {
             std::ifstream file("data.json");
-            json data = json::parse(file);
-            tasksData = data.get<std::unordered_map<std::string, std::string>>();
+            try {
+                json data = json::parse(file);
+                tasksData = data.get<std::unordered_map<std::string, std::string>>();
+            }
+            catch (const json::parse_error& e) {
+                std::ofstream outf{"data.json"};
+            }
+            catch (const json::type_error& e) {
+            }
         }
 
         void saveTasks() {
